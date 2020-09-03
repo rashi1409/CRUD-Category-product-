@@ -1,0 +1,35 @@
+
+<nav class="navbar navbar-expand-sm bg-light">
+    <ul class="navbar-nav">
+      <%if(!currentUser){%>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/register">Register</a>
+      </li>
+      <%}
+        else{
+          %>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/add-category">Add category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/add-product">Add product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/category-list">Category list</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/product-list">Product list</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/logout">Logout</a>
+          </li>
+          <%
+        }
+      %>
+    </ul>
+  </nav>
+  <br>
+  

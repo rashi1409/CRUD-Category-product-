@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <%- include _bootstrap_lib.ejs%>
+</head>
+
+<body>
+    <%- include _header.ejs%>
+    <div class="container-fluid">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>S.no</th>
+                    <th>Category</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+              <%for(index in categoryList){%>
+                 <tr>
+                     <td><%=parseInt(index)+1%></td>
+                     <td><%=categoryList[index].category_name%></td>
+                     <td>
+                        <a href="/admin/edit-category/<%=categoryList[index]._id%>"> 
+                         <button class="btn btn-primary">Edit</button>
+                        </a>
+                     </td>
+                     <td>
+                       <a onclick="return confirm('Are you sure?')" href="/admin/delete-category/<%=categoryList[index]._id%>">  
+                         <button class="btn btn-danger">Delete</button>
+                       </a> 
+                    </td>
+                 </tr>
+              <%}%>  
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

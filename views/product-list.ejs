@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <%- include _bootstrap_lib.ejs%> 
+  <script>
+    function deleteProduct(id){
+      $.ajax({url: "/admin/delete-product/"+id, success: function(result){
+        $("#row"+id).remove();
+     }});
+    }
+  </script>
+</head>
+<body>
+<%- include _header.ejs%>
+<div class="container-fluid">
+   <table class="table">
+       <thead>
+           <th>S.no</th>
+           <th>Image</th>
+           <th>Name</th>
+           <th>Category</th>
+           <th>Price</th>
+           <th>Description</th>
+           <th>Edit</th>
+           <th>Delete</th>
+       </thead>
+       <tbody>
+           <%for(index in productList){%>
+           <tr id="row<%=productList[index]._id%>">
+             <td><%=parseInt(index)+1%></td>
+             <td>
+                 <img src="/images/<%=productList[index].image%>" width="100" height="100"/>
+             </td>
+             <td><%=productList[index].name%></td>
+             <td><%=productList[index].category[0].category_name%></td>
+             <td><%=productList[index].price%></td>
+             <td><%=productList[index].description%></td>
+             <td>
+                <a href="/admin/update-product/<%=productList[index]._id%>"> 
+                 <button class="btn btn-primary">Edit</button>
+                </a>
+             </td>
+             <td>
+                 <button onclick="deleteProduct('<%=productList[index]._id%>')" class="btn btn-danger">Delete</button>
+                
+             </td>
+            </tr>
+           <%}%>
+       </tbody>
+   </table>
+</div>
+
+</body>
+</html>

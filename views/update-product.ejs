@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <%- include _bootstrap_lib.ejs%> 
+</head>
+<body>
+<%- include _header.ejs%>
+<div class="container-fluid">
+   <form action="/admin/update-product" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<%=product._id%>"/>  
+    <div class="form-group">
+           <label>Category</label>
+           <select name="cat_id" class="form-control">
+                <%
+                let selected = '';
+                for(index in categoryList)
+                {
+                    if(product.cat_id == categoryList[index].category_id)
+                      selected = 'selected';
+                    else
+                      selected = '';  
+                    %>
+                  <option <%=selected%> value="<%=categoryList[index].category_id%>"><%=categoryList[index].category_name%></option>
+                <%}%>
+           </select>
+       </div>
+       <div class="form-group">
+           <label>Product name</label>
+           <input type="text" value="<%=product.name%>" name="name" class="form-control"/>
+       </div>
+       <div class="form-group">
+        <label>Price</label>
+        <input type="text" value="<%=product.price%>" name="price" class="form-control"/>
+       </div>
+       <div class="form-group">
+        <label>Description</label>
+        <textarea class="form-control" name="description"><%=product.description%></textarea>
+       </div>
+       <div class="form-group">
+          <img width="50" height="50" src="/images/<%=product.image%>"/>
+           <br>
+           <label>Change-Image</label>
+           <input type="file" name="product_image"/>
+       </div>
+       <div class="form-group">
+           <button class="btn btn-success" type="submit">Update</button>
+       </div>
+   </form>
+</div>
+
+</body>
+</html>
